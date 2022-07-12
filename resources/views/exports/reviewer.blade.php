@@ -1,0 +1,75 @@
+@if($validity)
+    <table>
+        <thead>
+            <tr>
+                <th>项目流名</th>
+                <th>评审人</th>
+                <th>收到评审数</th>
+                <th>评审处理数</th>
+                <th>及时处理数</th>
+                <th>驳回数</th>
+                <th>评审处理率</th>
+                <th>评审及时处理率</th>
+            </tr>
+        </thead>
+        @foreach ($data as $reviewer_review_rate_key => $reviewer_review_rate_item)
+            @foreach($reviewer_review_rate_item as $reviewer_review_rate_value)
+                @if($loop->first)
+                    <tr>
+                        <td rowspan="{{$loop->count}}">{{$reviewer_review_rate_key}}</td>
+                        <td>{{$reviewer_review_rate_value['reviewer']}}</td>
+                        <td>{{$reviewer_review_rate_value['receives']}}</td>
+                        <td>{{$reviewer_review_rate_value['deals']}}</td>
+                        <td>{{$reviewer_review_rate_value['in_time']}}</td>
+                        <td>{{$reviewer_review_rate_value['rejects']}}</td>
+                        <td>{{$reviewer_review_rate_value['reviewDealrate']}}%</td>
+                        <td>{{$reviewer_review_rate_value['reviewIntimerate']}}%</td>
+                    </tr>
+                @else
+                    <tr>
+                        <td>{{$reviewer_review_rate_value['reviewer']}}</td>
+                        <td>{{$reviewer_review_rate_value['receives']}}</td>
+                        <td>{{$reviewer_review_rate_value['deals']}}</td>
+                        <td>{{$reviewer_review_rate_value['in_time']}}</td>
+                        <td>{{$reviewer_review_rate_value['rejects']}}</td>
+                        <td>{{$reviewer_review_rate_value['reviewDealrate']}}%</td>
+                        <td>{{$reviewer_review_rate_value['reviewIntimerate']}}%</td>
+                    </tr>
+                @endif
+            @endforeach
+        @endforeach
+    </table>
+@else
+    <table>
+        <tr>
+            <th>项目流名</th>
+            <th>评审人</th>
+            <th>收到评审数</th>
+            <th>评审处理数</th>
+            <th>驳回数</th>
+            <th>评审处理率</th>
+        </tr>
+        @foreach ($data as $reviewer_review_rate_key => $reviewer_review_rate_item)
+            @foreach($reviewer_review_rate_item as $reviewer_review_rate_value)
+                @if($loop->first)
+                    <tr>
+                        <td rowspan="{{$loop->count}}">{{$reviewer_review_rate_key}}</td>
+                        <td>{{$reviewer_review_rate_value['reviewer']}}</td>
+                        <td>{{$reviewer_review_rate_value['receives']}}</td>
+                        <td>{{$reviewer_review_rate_value['deals']}}</td>
+                        <td>{{$reviewer_review_rate_value['rejects']}}</td>
+                        <td>{{$reviewer_review_rate_value['reviewDealrate']}}%</td>
+                    </tr>
+                @else
+                    <tr>
+                        <td>{{$reviewer_review_rate_value['reviewer']}}</td>
+                        <td>{{$reviewer_review_rate_value['receives']}}</td>
+                        <td>{{$reviewer_review_rate_value['deals']}}</td>
+                        <td>{{$reviewer_review_rate_value['rejects']}}</td>
+                        <td>{{$reviewer_review_rate_value['reviewDealrate']}}%</td>
+                    </tr>
+                @endif
+            @endforeach
+        @endforeach
+    </table>
+@endif

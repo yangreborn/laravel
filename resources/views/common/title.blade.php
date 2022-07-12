@@ -1,0 +1,10 @@
+<div>
+    @switch($data['size'])
+        @case(1)
+        <h1>{{$data['value']}}</h1>
+        @break
+        @case(2)
+        <h2>{{$data['value']}}</h2>
+        @break
+    @endswitch
+</div>
